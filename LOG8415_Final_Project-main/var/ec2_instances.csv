@@ -1,0 +1,6 @@
+name,user_name,public_dns_name,public_ip_address,state
+orchestrator,ubuntu,ec2-44-200-157-62.compute-1.amazonaws.com,44.200.157.62,running
+worker,ubuntu,ec2-44-197-239-64.compute-1.amazonaws.com,44.197.239.64,running
+worker,ubuntu,ec2-34-201-4-224.compute-1.amazonaws.com,34.201.4.224,running
+worker,ubuntu,ec2-3-235-129-212.compute-1.amazonaws.com,3.235.129.212,running
+worker,ubuntu,ec2-44-199-207-220.compute-1.amazonaws.com,44.199.207.220,running
