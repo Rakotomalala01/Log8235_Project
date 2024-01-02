@@ -2,7 +2,25 @@ import flask
 import requests
 
 app = flask.Flask(__name__)
-proxy_private_ip= "172.31.17.6"
+def get_server_info(instance_name):
+    server_info = None
+
+    with open('./var/ec2_instances.csv', mode='r') as csv_file:
+        csv_reader = csv.DictReader(csv_file)
+        for row in csv_reader:
+            if row['name'] == instance_name:
+                server_info = {
+                    'name': row['name'],
+                    'user_name': row['user_name'],
+                    'public_dns_name': row['public_dns_name'],
+                    'public_ip_address': row['public_ip_address'],
+                    'state': row['state']
+                }
+                break
+
+    return server_info
+
+proxy_server  =get_server_info("proxy")['public_ip_address']
 
 @app.route('/endpoint', methods=['GET', 'POST'])
 

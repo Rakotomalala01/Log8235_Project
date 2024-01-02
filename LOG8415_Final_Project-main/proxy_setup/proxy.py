@@ -3,17 +3,39 @@ import pythonping
 from sshtunnel import SSHTunnelForwarder
 import pymysql
 import flask 
+import csv 
 
 '''Variables Initialization:'''
+
+
 instance_username="ubuntu"
 pkey="vockey.pem"
 mysql_username='root'
 mysql_password='root'
 mysql_database_name='sakila'
-master_server  = "ip-172-31-17-2.ec2.internal"
-salves_servers =["ip-172-31-17-3.ec2.internal", 
-                 "ip-172-31-17-4.ec2.internal", 
-                 "ip-172-31-17-5.ec2.internal"]
+
+def get_server_info(instance_name):
+    server_info = None
+
+    with open('./var/ec2_instances.csv', mode='r') as csv_file:
+        csv_reader = csv.DictReader(csv_file)
+        for row in csv_reader:
+            if row['name'] == instance_name:
+                server_info = {
+                    'name': row['name'],
+                    'user_name': row['user_name'],
+                    'public_dns_name': row['public_dns_name'],
+                    'public_ip_address': row['public_ip_address'],
+                    'state': row['state']
+                }
+                break
+
+    return server_info
+
+master_server  =get_server_info("master")['public_ip_address']
+salves_servers =[get_server_info("slave-1")['public_ip_address'], 
+                 get_server_info("slave-2")['public_ip_address'], 
+                 get_server_info("slave-3")['public_ip_address']]
 default_bind_address=(master_server, 3306)
 
 app = flask.Flask(__name__)
