@@ -15,7 +15,7 @@ class Orchestrator:
             # Reconstruct instances list from file
             csv_reader = csv.DictReader(csv_file)
             for row in csv_reader:
-                if row['name'] == 'orchestrator':
+                if row['name'] == 'standalone':
                     return (row['public_dns_name'], row['user_name'])
                 
     def getConnection(self):
@@ -28,8 +28,8 @@ class Orchestrator:
         try:
             print('Starting Flask deployment...')
             self.connection.run('mkdir -p orchestrator')
+            self.connection.put('orchestrator/standalone_benchmark.sh', remote='/home/ubuntu/orchestrator')
             self.connection.put('orchestrator/app.py', remote='/home/ubuntu/orchestrator')
-            self.connection.put('orchestrator/worker_state.json', remote='/home/ubuntu/orchestrator')
             self.connection.put('orchestrator/default', remote='/home/ubuntu/orchestrator')
             self.connection.put('orchestrator/deploy-flask.sh', remote='/home/ubuntu/orchestrator')
             self.connection.put('orchestrator/flaskapp.service', remote='/home/ubuntu/orchestrator')

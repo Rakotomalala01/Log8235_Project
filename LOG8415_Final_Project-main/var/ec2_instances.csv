@@ -1,6 +1,8 @@
 name,user_name,public_dns_name,public_ip_address,state
-orchestrator,ubuntu,ec2-44-200-157-62.compute-1.amazonaws.com,44.200.157.62,running
-worker,ubuntu,ec2-44-197-239-64.compute-1.amazonaws.com,44.197.239.64,running
-worker,ubuntu,ec2-34-201-4-224.compute-1.amazonaws.com,34.201.4.224,running
-worker,ubuntu,ec2-3-235-129-212.compute-1.amazonaws.com,3.235.129.212,running
-worker,ubuntu,ec2-44-199-207-220.compute-1.amazonaws.com,44.199.207.220,running
+master,ubuntu,ec2-44-204-176-155.compute-1.amazonaws.com,44.204.176.155,running
+gatekeeper,ubuntu,ec2-3-83-50-52.compute-1.amazonaws.com,3.83.50.52,running
+standalone,ubuntu,ec2-18-205-157-160.compute-1.amazonaws.com,18.205.157.160,running
+slave-1,ubuntu,ec2-3-83-128-185.compute-1.amazonaws.com,3.83.128.185,running
+slave-3,ubuntu,ec2-18-212-172-210.compute-1.amazonaws.com,18.212.172.210,running
+proxy,ubuntu,ec2-174-129-180-117.compute-1.amazonaws.com,174.129.180.117,running
+slave-2,ubuntu,ec2-107-21-84-156.compute-1.amazonaws.com,107.21.84.156,running
