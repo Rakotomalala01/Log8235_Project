@@ -29,8 +29,8 @@ class Orchestrator:
         try:
             print('Starting Flask deployment...')
             self.connection.run('mkdir -p master')
-            self.connection.put('master_setup/master_setup.sh', remote='/home/ubuntu/master')
-            self.connection.put('master_setup/mysql_cluster_benchmark.sh', remote='/home/ubuntu/master')
+            self.connection.put('master/master_setup.sh', remote='/home/ubuntu/master')
+            self.connection.put('master/mysql_cluster_benchmark.sh', remote='/home/ubuntu/master')
             print('Flask deployment finished sucessfully')
         except Exception as e:
             print('Deployment Failed: ')
