@@ -60,8 +60,8 @@ deploy the proxy_setup folder by calling proxy.py file and follows the instructi
 copy the gatekeeper_setup folder to the gatekeeper server using this command 
 `scp -i "vockey.pem" -r gatekeeper_setup ubuntu@"replace with the gatekeepers public IP":/home/ubuntu`
 
-1. connect to the gatekeeper server as root:
-2. run `cd /home/ubuntu/gatekeeper_setup` 
-3. run `chmod +x gatekeeper_setup.sh`
-4. run `./gatekeeper_setup.sh`
-5. Run `python3 gatekeeper.py`. 
+connect to the gatekeeper server as root:
+`cd /home/ubuntu/gatekeeper_setup` 
+`chmod +x gatekeeper_setup.sh`
+`./gatekeeper_setup.sh`
+`python3 gatekeeper.py`. 
