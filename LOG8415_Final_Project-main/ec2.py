@@ -91,7 +91,7 @@ class EC2InstancesManager:
         """
         return instance['state'] == 'running'
 
-    def saveInstancesToCSV(self):
+    def saveInstancesToCSV(self, type):
         """
         Save all instances to CSV file
         """
@@ -100,7 +100,7 @@ class EC2InstancesManager:
         self.save = tmp_instances
         fields = ['name', 'user_name', 'public_dns_name', 'public_ip_address', 'state']
         filename = 'var/ec2_instances.csv'
-        with open(filename, 'w') as csvfile: 
+        with open(filename, type) as csvfile: 
             writer = csv.DictWriter(csvfile, fieldnames = fields) 
             writer.writeheader() 
             writer.writerows(tmp_instances)
@@ -113,15 +113,20 @@ if __name__ == "__main__":
     
     ec2_manager_cluster = EC2InstancesManager("cluster")
     ec2_manager_cluster.create_instances('master', 't2.micro', 1)
+    
     slaves = []
     for i in range(3):
         instance_name = 'slave-' + str(i + 1)
         slave = ec2_manager_cluster.create_instances(instance_name, 't2.micro', 1)
+        
         slaves.append(slave)
         
+        
     ec2_manager_proxy = EC2InstancesManager("proxy")
-    ec2_manager_proxy.create_instances('proxy', 't2.large', 1)
+    ec2_manager_proxy.create_instances('proxy', 't2.large', 1)    
     
     ec2_manager_gatekeeper = EC2InstancesManager("gatekeeper")
     ec2_manager_gatekeeper.create_instances('gatekeeper', 't2.large', 1)
+    ec2_manager_gatekeeper.saveInstancesToCSV('w')
+    
     
